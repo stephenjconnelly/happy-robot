@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from '../styles/index.module.css';
 
 export default function FileUpload({ setText }) {
   const [file, setFile] = useState(null);
@@ -30,18 +31,18 @@ export default function FileUpload({ setText }) {
   };
 
   return (
-    <div className="form-group mt-3">
-      <label htmlFor="fileInput">Upload a File (PDF or Text):</label>
+    <div className={styles.fileUpload}>
+      <label htmlFor="fileInput" className={styles.label}>Upload a File (PDF or Text):</label>
       <input
         type="file"
         id="fileInput"
-        className="form-control"
+        className={styles.input}
         onChange={handleFileChange}
       />
-      <button className="btn btn-primary mt-3" onClick={handleUpload}>
+      <button className={styles.button} onClick={handleUpload}>
         Upload
       </button>
-      {file && <p className="mt-2">File selected: {file.name}</p>}
+      {file && <p className={styles.fileInfo}>File selected: {file.name}</p>}
     </div>
   );
 }

@@ -1,16 +1,17 @@
 import { useState } from "react";
 import FileUpload from "../components/FileUpload";
 import axios from "axios";
+import styles from '../styles/index.module.css';
 
 export default function Home() {
-  const [text, setText] = useState(""); // State for user input or extracted text
+  const [text, setText] = useState(""); 
   const [summary, setSummary] = useState("");
   const [keyPoints, setKeyPoints] = useState("");
-  const [summaryLength, setSummaryLength] = useState("medium"); // Default: Medium
+  const [summaryLength, setSummaryLength] = useState("medium");
   const [loading, setLoading] = useState(false);
 
   const summarizeText = async () => {
-    if (!text.trim()) { // Ensure the text is not empty
+    if (!text.trim()) {
       alert("Please upload a file or paste text to summarize.");
       return;
     }
@@ -33,28 +34,23 @@ export default function Home() {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">AI-Powered Document Summarizer</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>AI-Powered Document Summarizer</h1>
       
       <FileUpload setText={setText} />
 
-      <div className="form-group mt-4">
-        <label htmlFor="textArea">Enter or Edit Text:</label>
-        <textarea
-          id="textArea"
-          className="form-control"
-          rows="8"
-          value={text}
-          onChange={(e) => setText(e.target.value)} // Allow manual editing
-          placeholder="Paste your text here or upload a file..."
-        ></textarea>
-      </div>
+      <textarea
+        className={styles.textArea}
+        rows="8"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Paste your text here or upload a file..."
+      ></textarea>
 
-      <div className="form-group mt-3">
+      <div className={styles.summaryLength}>
         <label htmlFor="summaryLength">Select Summary Length:</label>
         <select
           id="summaryLength"
-          className="form-control"
           value={summaryLength}
           onChange={(e) => setSummaryLength(e.target.value)}
         >
@@ -65,7 +61,7 @@ export default function Home() {
       </div>
 
       <button
-        className="btn btn-primary mt-3"
+        className={styles.button}
         onClick={summarizeText}
         disabled={loading}
       >
@@ -73,14 +69,14 @@ export default function Home() {
       </button>
 
       {summary && (
-        <div className="mt-4">
+        <div className={styles.summary}>
           <h3>Summary:</h3>
           <p>{summary}</p>
         </div>
       )}
 
       {keyPoints && (
-        <div className="mt-4">
+        <div className={styles.keyPoints}>
           <h3>Key Points:</h3>
           <ul>
             {keyPoints.split("\n").map((point, index) => (
