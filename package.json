@@ -6,8 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/formidable": "^3.4.5",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "formidable": "^3.5.2",
     "formik": "^2.4.6",
     "next": "^15.1.6",
     "openai": "^4.80.1",
